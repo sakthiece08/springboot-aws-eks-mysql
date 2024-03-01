@@ -1,0 +1,46 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: spring-test-cluster
+  region: us-east-1
+  version: "1.27"
+
+vpc:
+  id: "vpc-0c6ae67a1f652eee9"
+  subnets:
+    private:
+      us-east-1a:
+        id: "subnet-06145b8d324ba8dcf"
+      us-east-1b:
+        id: "subnet-06b74e146cdf65730"
+    public:
+      us-east-1a:
+        id: "subnet-0cde333f7e6749ce1"
+      us-east-1b:
+        id: "subnet-03687279972bd24c2"
+
+nodeGroups:
+  - name: ng-1
+    labels: { role: backend }
+    instanceType: t2.micro
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 3
+    ssh:
+      allow: true
+      publicKeyName: ec2-keypair
+    iam:
+      withAddonPolicies:
+        imageBuilder: true # ECR
+        awsLoadBalancerController: true
+        autoScaler: true
+
+iam: # IAM policy for whole cluster
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      attachPolicyARNs:
+        - arn:aws:iam::058264215543:policy/AWSLoadBalancerControllerIAMPolicy
