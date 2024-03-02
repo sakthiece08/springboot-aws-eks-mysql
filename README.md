@@ -58,6 +58,7 @@ Image generated will be deployed to AWS EKS cluster.
       ```
       Replace YOUR_EC2_KEY with your actual key pair name and other values accordingly.
 8. Then open the database client and connect to the database.
+
       ![db.png](./src/main/resources/images/db.png)
 9. Clone this repository.
 10. From the terminal cd into your project directory and build project using command:
