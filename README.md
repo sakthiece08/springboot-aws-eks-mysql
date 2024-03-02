@@ -40,7 +40,7 @@ Image generated will be deployed to AWS EKS cluster.
 
 ### Perform following steps for application deployment:
 1. Setup Custom VPC in AWS account using VPC service including NAT Gateway and Internet Gateway.
-    ![img.png](img.png)
+    ![vpc.png](./src/main/resources/images/vpc.png)
 2. Create a Security Group having inbound rule with access from anywhere. Select VPC created in Step-1 while creating Security group 
     (Note. You can create multiple security groups with restricted access.).
 3. Create a MySql database subnet group having a private subnet. (using Amazon RDS service).
@@ -58,7 +58,7 @@ Image generated will be deployed to AWS EKS cluster.
       ```
       Replace YOUR_EC2_KEY with your actual key pair name and other values accordingly.
 8. Then open the database client and connect to the database.
-      ![img_1.png](img_1.png)
+      ![db.png](./src/main/resources/images/db.png)
 9. Clone this repository.
 10. From the terminal cd into your project directory and build project using command:
     - ``` 
@@ -122,7 +122,7 @@ Image generated will be deployed to AWS EKS cluster.
    ```
 7. Check the deployments using ``` kubectl get all```
 8. Go into EC2 service in AWS account. Select AWS Load balancer and copy DNS name to test application.
-   ![img_2.png](img_2.png)
+   ![alb.png](./src/main/resources/images/alb.png)
 
 
 ###  Following is list of api created in this project:
